@@ -1,0 +1,1 @@
+Fixing Discord embed image to a static JPEG served directly by the app.
