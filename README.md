@@ -1,0 +1,1 @@
+# earthpol-legends-discord
