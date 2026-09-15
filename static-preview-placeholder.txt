@@ -1,0 +1,1 @@
+Static preview JPEG will be served from server memory.
