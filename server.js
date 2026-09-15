@@ -4,7 +4,14 @@ const path = require('path');
 
 const PORT = process.env.PORT || 3000;
 const ROOT = __dirname;
-const GAME_GZIP_PARTS = ['game.html.gz.part1','game.html.gz.part2'];
+const GAME_GZIP_PARTS = [
+  'game.html.gz.part00',
+  'game.html.gz.part01',
+  'game.html.gz.part02',
+  'game.html.gz.part03',
+  'game.html.gz.part04',
+  'game.html.gz.part05'
+];
 
 function sendFile(res, file, type, cache = 'public, max-age=300') {
   const full = path.join(ROOT, file);
