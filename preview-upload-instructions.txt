@@ -1,0 +1,1 @@
+Oxbit Discord preview image will be committed as a binary blob via Git data API.
