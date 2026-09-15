@@ -4,7 +4,7 @@ const path = require('path');
 
 const PORT = process.env.PORT || 3000;
 const ROOT = __dirname;
-const EXACT_GAME_GZ = 'oxbit-exact-game.html.gz';
+const EXACT_GAME = 'oxbit-exact.html';
 const OXBIT_THEME = 'oxbit-theme.ogg';
 
 function exists(file){ return fs.existsSync(path.join(ROOT,file)); }
@@ -18,23 +18,20 @@ function sendFile(res, file, type, cache='public, max-age=300', extra={}){
   fs.createReadStream(full).pipe(res);
 }
 function sendExactGame(res){
-  if(!exists(EXACT_GAME_GZ)){
+  if(!exists(EXACT_GAME)){
     res.writeHead(503, {'Content-Type':'text/plain; charset=utf-8'});
     return res.end('Exact Earthpol Legends Oxbit encounter asset is not installed yet.');
   }
-  return sendFile(res, EXACT_GAME_GZ, 'text/html; charset=utf-8', 'public, max-age=300', {
-    'Content-Encoding':'gzip',
-    'Vary':'Accept-Encoding'
-  });
+  return sendFile(res, EXACT_GAME, 'text/html; charset=utf-8', 'public, max-age=300');
 }
 
 const server=http.createServer((req,res)=>{
   const u=new URL(req.url,'http://localhost');
   if(u.pathname==='/health'){
     res.writeHead(200,{'Content-Type':'application/json'});
-    return res.end(JSON.stringify({ok:true, exactEncounter:exists(EXACT_GAME_GZ), oxbitTheme:exists(OXBIT_THEME)}));
+    return res.end(JSON.stringify({ok:true, exactEncounter:exists(EXACT_GAME), oxbitTheme:exists(OXBIT_THEME)}));
   }
-  if(u.pathname==='/game.html' || u.pathname==='/oxbit-exact-game.html') return sendExactGame(res);
+  if(u.pathname==='/game.html' || u.pathname==='/oxbit-exact.html') return sendExactGame(res);
   if(u.pathname==='/oxbit-theme.ogg') return sendFile(res,OXBIT_THEME,'audio/ogg','public, max-age=86400');
   if(u.pathname==='/oxbit-preview.png') return sendFile(res,'oxbit-preview.png','image/png','public, max-age=86400');
   if(u.pathname==='/oxbit' || u.pathname==='/oxbit/') return sendFile(res,'oxbit.html','text/html; charset=utf-8');
