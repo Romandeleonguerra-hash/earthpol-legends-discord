@@ -1,0 +1,1 @@
+The Discord embed preview is being switched to a static in-game screenshot asset to ensure Discordbot can fetch it reliably.
