@@ -4,8 +4,8 @@ const path = require('path');
 
 const PORT = process.env.PORT || 3000;
 const ROOT = __dirname;
-const EXACT_GAME = 'oxbit-exact.html';
-const OXBIT_THEME = 'oxbit-theme.ogg';
+const EXACT_GAME = 'Earthpol_Legends_Oxbit_Exact_Encounter.html';
+const OXBIT_THEME = 'oxbit-theme-upload.ogg';
 
 function exists(file){ return fs.existsSync(path.join(ROOT,file)); }
 function sendFile(res, file, type, cache='public, max-age=300', extra={}){
