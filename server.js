@@ -29,11 +29,11 @@ const server=http.createServer((req,res)=>{
   const u=new URL(req.url,'http://localhost');
   if(u.pathname==='/health'){
     res.writeHead(200,{'Content-Type':'application/json'});
-    return res.end(JSON.stringify({ok:true, exactEncounter:exists(EXACT_GAME), oxbitTheme:exists(OXBIT_THEME)}));
+    return res.end(JSON.stringify({ok:true, exactEncounter:exists(EXACT_GAME), oxbitTheme:exists(OXBIT_THEME), preview:exists('oxbit-preview.html')}));
   }
   if(u.pathname==='/game.html' || u.pathname==='/oxbit-exact.html') return sendExactGame(res);
   if(u.pathname==='/oxbit-theme.ogg') return sendFile(res,OXBIT_THEME,'audio/ogg','public, max-age=86400');
-  if(u.pathname==='/oxbit-preview.png') return sendFile(res,'oxbit-preview.png','image/png','public, max-age=86400');
+  if(u.pathname==='/oxbit-preview' || u.pathname==='/oxbit-preview.html') return sendFile(res,'oxbit-preview.html','text/html; charset=utf-8','public, max-age=60');
   if(u.pathname==='/oxbit' || u.pathname==='/oxbit/') return sendFile(res,'oxbit.html','text/html; charset=utf-8');
   if(u.pathname==='/' || u.pathname==='/index.html') return sendFile(res,'index.html','text/html; charset=utf-8');
   res.writeHead(404,{'Content-Type':'text/plain; charset=utf-8'}); res.end('Not found');
