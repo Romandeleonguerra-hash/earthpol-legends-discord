@@ -35,7 +35,7 @@ const server=http.createServer((req,res)=>{
   if(u.pathname==='/game.html' || u.pathname==='/oxbit-exact.html') return sendExactGame(res);
   if(u.pathname==='/oxbit-theme.ogg') return sendFile(res,OXBIT_THEME,'audio/ogg','public, max-age=86400');
   if(u.pathname==='/oxbit-preview.jpg') return sendFile(res,OXBIT_PREVIEW,'image/jpeg','public, max-age=86400');
-  if(u.pathname==='/oxbit' || u.pathname==='/oxbit/') return sendFile(res,'oxbit.html','text/html; charset=utf-8');
+  if(u.pathname==='/oxbit' || u.pathname==='/oxbit/' || u.pathname==='/oxbit-discord-v10') return sendFile(res,'oxbit.html','text/html; charset=utf-8','no-cache');
   if(u.pathname==='/' || u.pathname==='/index.html') return sendFile(res,'index.html','text/html; charset=utf-8');
   res.writeHead(404,{'Content-Type':'text/plain; charset=utf-8'}); res.end('Not found');
 });
